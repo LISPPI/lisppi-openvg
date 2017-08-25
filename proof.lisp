@@ -1,6 +1,6 @@
 (in-package :vg)
 ;;=====================================================================
-(defun ttt ()
+(defun t-clear ()
   ( native::init :api egl:openvg-api)
   (let ((clear-color (foreign-alloc :float :initial-contents '(1.0 1.0 1.0 1.0))))
     (vg:set-fv :CLEAR-COLOR 4 clear-color)
@@ -12,7 +12,7 @@
   (sleep 2)
   (native::deinit))
 
-(defun ttt ()
+(defun t-broken ()
   ( native::init :api egl:openvg-api)
   (let ((clear-color (foreign-alloc :float :initial-contents '(0.0 0.0 1.0 1.0))))
     (vg:set-fv :CLEAR-COLOR 4 clear-color)
@@ -69,31 +69,13 @@
   (native::deinit))
 
 
-#||
-int main() {
-	int width, height;
-	char s[3];
-
-	init(&width, &height);					// Graphics initialization
-
-	Start(width, height);					// Start the picture
-	Background(0, 0, 0);					// Black background
-	Fill(44, 77, 232, 1);					// Big blue marble
-	Circle(width / 2, 0, width);			// The "world"
-	Fill(255, 255, 255, 1);					// White text
-	TextMid(width / 2, height / 2, "hello, world", SerifTypeface, width / 10);	// Greetings 
-	End();						   			// End the picture
-
-	fgets(s, 2, stdin);				   		// look at the pic, end with [RETURN]
-	finish();					            // Graphics cleanup
-	exit(0);
-
-||#
 (defun background (r g b)
   (with-foreign-array (color (make-array 4 :initial-contents (list r g b 1.0))
 			     '(:array :float 4))
     (vg:set-fv :CLEAR-COLOR 4 color)
     (vg:clear 0 0 1200 1080)))
+
+
 (defun -fill (&rest rest)
   (with-foreign-array (color (make-array 4
 					 :initial-contents (mapcar #'float rest))
@@ -103,6 +85,15 @@ int main() {
       (vg:set-parameter-fv paint PAINT-COLOR 4 color)
       (vg:set-paint paint FILL-PATH)
       (vg:destroy-paint paint))))
+#||
+(defun -fill (&rest rest)
+  (with-vec (color  (mapcar #'float rest))
+    (let ((paint (vg:create-paint)))
+      (vg:set-parameter-i paint PAINT-TYPE PAINT-TYPE-COLOR )
+      (vg:set-parameter-fv paint PAINT-COLOR 4 (pointer color))
+      (vg:set-paint paint FILL-PATH)
+      (vg:destroy-paint paint))))
+||#
 
 (defun -circle (x y r)
   (let ((path (vg:create-path path-format-standard
