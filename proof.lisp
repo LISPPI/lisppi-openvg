@@ -3,7 +3,7 @@
 (defun t-clear ()
   ( native::init :api egl:openvg-api)
   (let ((clear-color (foreign-alloc :float :initial-contents '(1.0 1.0 1.0 1.0))))
-    (vg:set-fv :CLEAR-COLOR 4 clear-color)
+    (vg:set-fv vg:CLEAR-COLOR 4 clear-color)
     (vg:clear 0 0 1200 1080)
     (vg:flush)
     ;;(foreign-free clear-color)
@@ -72,10 +72,10 @@
 (defun background (r g b)
   (with-foreign-array (color (make-array 4 :initial-contents (list r g b 1.0))
 			     '(:array :float 4))
-    (vg:set-fv :CLEAR-COLOR 4 color)
+    (vg:set-fv vg:CLEAR-COLOR 4 color)
     (vg:clear 0 0 1200 1080)))
 
-
+#|
 (defun -fill (&rest rest)
   (with-foreign-array (color (make-array 4
 					 :initial-contents (mapcar #'float rest))
@@ -85,22 +85,22 @@
       (vg:set-parameter-fv paint PAINT-COLOR 4 color)
       (vg:set-paint paint FILL-PATH)
       (vg:destroy-paint paint))))
-#||
+|#
 (defun -fill (&rest rest)
-  (with-vec (color  (mapcar #'float rest))
+  (with-vec-f (color  rest)
     (let ((paint (vg:create-paint)))
-      (vg:set-parameter-i paint PAINT-TYPE PAINT-TYPE-COLOR )
-      (vg:set-parameter-fv paint PAINT-COLOR 4 (pointer color))
-      (vg:set-paint paint FILL-PATH)
+      (vg:set-parameter-i paint vg:PAINT-TYPE vg:PAINT-TYPE-COLOR )
+      (vg:set-parameter-fv paint vg:PAINT-COLOR 4 (pointer color))
+      (vg:set-paint paint vg:FILL-PATH)
       (vg:destroy-paint paint))))
-||#
+
 
 (defun -circle (x y r)
-  (let ((path (vg:create-path path-format-standard
-			      :path-datatype-f
+  (let ((path (vg:create-path vg:path-format-standard
+			      vg:path-datatype-f
 			      1.0 0.0
 			      0 0
-			      path-capability-append-to)))
+			      vg:path-capability-append-to)))
     (vgu:ellipse path x y r r)
     (vg:draw-path path (+ vg:fill-path vg:stroke-path) )
     (vg:destroy-path path)
@@ -109,7 +109,7 @@
   ( native::init :api egl:openvg-api)
   ;; background
   (background 1.0 0.2 0.4)
-  (-fill 1 0.3 0.3 1)
+  (-fill 1.0 0.3 0.3 1.0)
   (-circle 500.0 0.0 500.0  )
   (print (vg:get-error)) (force-output)
   (vg:flush)

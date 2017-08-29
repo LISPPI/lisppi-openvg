@@ -39,38 +39,34 @@
                   :collect "     ")
                chars))))
 ;;=================================================================
-(defclass vg-vec ()
+(defclass vec ()
   ((pointer :accessor pointer :initarg :pointer :type cffi-sys:foreign-pointer)
    (size    :accessor size    :initarg :size    :type fixnum)))
 
-(defun free-vg-vec (vec)
+(defun free-vec (vec)
   (foreign-free (pointer vec))
   (setf (pointer vec) (null-pointer)
 	(size vec) 0))
 
-(defmethod free ((object vg-vec))
-  (free-vg-vec object))
+(defmethod free ((object vec))
+  (free-vec object))
 
-(defmethod print-object ((object vg-vec) stream)
-  (format stream "#<VG-VEC :size ~a>"
+(defmethod print-object ((object vec) stream)
+  (format stream "#<VEC :size ~a>"
 	  (size object)))
 
-(defmethod print-mem ((thing vg-vec) &optional (size-in-bytes 64) (offset 0))
+(defmethod print-mem ((thing vec) &optional (size-in-bytes 64) (offset 0))
   (%print-mem
    (cffi:inc-pointer (pointer thing) offset)
    size-in-bytes))
 
-(defun infer-type)
+(defmethod initialize-instance :after ((obj vec)
+				       &key type initial-contents)
+  (setf (pointer obj) (foreign-alloc
+		       type
+		       :initial-contents initial-contents)
+	(size obj) (length initial-contents)))
 
-(defun make-vec (initial)
-  (let ((type (if (floatp (elt initial 0))
-		  :float
-		  :int)))
-    (make-instance 'vg-vec
-		   :pointer (foreign-alloc
-			     type
-			     :initial-contents initial)
-		   :size (length initial))))
 
 
 (defmacro with-vec ((name initial) &body body)
@@ -78,3 +74,52 @@
      (unwind-protect
 	  (progn ,@body)
        (free ,name) )))
+;;-----------------------------------------------------------
+;;
+(defclass vec-f (vec) ())
+
+(defun make-vec-f (initial-contents)
+  (make-instance 'vec-f :type :float :initial-contents initial-contents))
+
+(defmethod print-object ((object vec-f) stream)
+  (format stream "#<VEC-F [~A] '#("
+	  (size object))
+  (loop for i from 0 to (1- (size object)) do
+       (format stream "~A " (mem-ref (pointer object) :float
+				     (* 4 i))))
+  (format stream ")>"))
+
+(defmacro with-vec-f ((name initial) &body body)
+  `(let ((,name (make-vec-f ,initial)))
+     (unwind-protect
+	  (progn ,@body)
+       (free ,name) )))
+;;-----------------------------------------------------------
+;;
+(defclass vec-i (vec) ())
+(defun make-vec-i (initial-contents)
+  (make-instance 'vec-i :type :int :initial-contents initial-contents))
+
+(defmethod print-object ((object vec-i) stream)
+  (format stream "#<VEC-I [~A] '#("
+	  (size object))
+  (loop for i from 0 to (1- (size object)) do
+       (format stream "~A " (mem-ref (pointer object) :int
+				     (* 4 i))))
+  (format stream ")>"))
+
+
+;;-----------------------------------------------------------
+;;
+(defclass vec-cmd (vec) ())
+(defun make-vec-cmd (initial-contents)
+  (make-instance 'vec-i :type :int
+		 :initial-contents (mapcar #'symbol-value initial-contents)))
+
+(defmethod print-object ((object vec-i) stream)
+  (format stream "#<VEC-CMD [~A] '#("
+	  (size object))
+  (loop for i from 0 to (1- (size object)) do
+       (format stream "~A " (mem-ref (pointer object) :int
+				     (* 4 i))))
+  (format stream ")>"))

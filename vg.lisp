@@ -2,134 +2,144 @@
 (in-package #:vg)
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:448:9)
-;;  blend-mode (was _VGBlendMode)
 ;;
-(defconstant blend-src #x2000 );; VG_BLEND_SRC
-(defconstant blend-src-over #x2001 );; VG_BLEND_SRC_OVER
-(defconstant blend-dst-over #x2002 );; VG_BLEND_DST_OVER
-(defconstant blend-src-in #x2003 );; VG_BLEND_SRC_IN
-(defconstant blend-dst-in #x2004 );; VG_BLEND_DST_IN
-(defconstant blend-multiply #x2005 );; VG_BLEND_MULTIPLY
-(defconstant blend-screen #x2006 );; VG_BLEND_SCREEN
-(defconstant blend-darken #x2007 );; VG_BLEND_DARKEN
-(defconstant blend-lighten #x2008 );; VG_BLEND_LIGHTEN
-(defconstant blend-additive #x2009 );; VG_BLEND_ADDITIVE
-(defconstant blend-mode-force-size #x7FFFFFFF );; VG_BLEND_MODE_FORCE_SIZE
+(defctype blend-mode :uint);; was _VGBlendMode
+(export 'blend-mode)
+(defparameter blend-src #x2000 );; VG_BLEND_SRC
+(defparameter blend-src-over #x2001 );; VG_BLEND_SRC_OVER
+(defparameter blend-dst-over #x2002 );; VG_BLEND_DST_OVER
+(defparameter blend-src-in #x2003 );; VG_BLEND_SRC_IN
+(defparameter blend-dst-in #x2004 );; VG_BLEND_DST_IN
+(defparameter blend-multiply #x2005 );; VG_BLEND_MULTIPLY
+(defparameter blend-screen #x2006 );; VG_BLEND_SCREEN
+(defparameter blend-darken #x2007 );; VG_BLEND_DARKEN
+(defparameter blend-lighten #x2008 );; VG_BLEND_LIGHTEN
+(defparameter blend-additive #x2009 );; VG_BLEND_ADDITIVE
+(defparameter blend-mode-force-size #x7FFFFFFF );; VG_BLEND_MODE_FORCE_SIZE
 (export '(blend-src blend-src-over blend-dst-over blend-src-in blend-dst-in
           blend-multiply blend-screen blend-darken blend-lighten blend-additive
           blend-mode-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:431:9)
-;;  image-mode (was _VGImageMode)
 ;;
-(defconstant draw-image-normal #x1F00 );; VG_DRAW_IMAGE_NORMAL
-(defconstant draw-image-multiply #x1F01 );; VG_DRAW_IMAGE_MULTIPLY
-(defconstant draw-image-stencil #x1F02 );; VG_DRAW_IMAGE_STENCIL
-(defconstant image-mode-force-size #x7FFFFFFF );; VG_IMAGE_MODE_FORCE_SIZE
+(defctype image-mode :uint);; was _VGImageMode
+(export 'image-mode)
+(defparameter draw-image-normal #x1F00 );; VG_DRAW_IMAGE_NORMAL
+(defparameter draw-image-multiply #x1F01 );; VG_DRAW_IMAGE_MULTIPLY
+(defparameter draw-image-stencil #x1F02 );; VG_DRAW_IMAGE_STENCIL
+(defparameter image-mode-force-size #x7FFFFFFF );; VG_IMAGE_MODE_FORCE_SIZE
 (export '(draw-image-normal draw-image-multiply draw-image-stencil
           image-mode-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:423:9)
-;;  image-param-type (was _VGImageParamType)
 ;;
-(defconstant image-format #x1E00 );; VG_IMAGE_FORMAT
-(defconstant image-width #x1E01 );; VG_IMAGE_WIDTH
-(defconstant image-height #x1E02 );; VG_IMAGE_HEIGHT
-(defconstant image-param-type-force-size #x7FFFFFFF );; VG_IMAGE_PARAM_TYPE_FORCE_SIZE
+(defctype image-param-type :uint);; was _VGImageParamType
+(export 'image-param-type)
+(defparameter image-format #x1E00 );; VG_IMAGE_FORMAT
+(defparameter image-width #x1E01 );; VG_IMAGE_WIDTH
+(defparameter image-height #x1E02 );; VG_IMAGE_HEIGHT
+(defparameter image-param-type-force-size #x7FFFFFFF );; VG_IMAGE_PARAM_TYPE_FORCE_SIZE
 (export '(image-format image-width image-height image-param-type-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:415:9)
-;;  image-quality (was _VGImageQuality)
 ;;
-(defconstant image-quality-nonantialiased #x1 );; VG_IMAGE_QUALITY_NONANTIALIASED
-(defconstant image-quality-faster #x2 );; VG_IMAGE_QUALITY_FASTER
-(defconstant image-quality-better #x4 );; VG_IMAGE_QUALITY_BETTER
-(defconstant image-quality-force-size #x7FFFFFFF );; VG_IMAGE_QUALITY_FORCE_SIZE
+(defctype image-quality :uint);; was _VGImageQuality
+(export 'image-quality)
+(defparameter image-quality-nonantialiased #x1 );; VG_IMAGE_QUALITY_NONANTIALIASED
+(defparameter image-quality-faster #x2 );; VG_IMAGE_QUALITY_FASTER
+(defparameter image-quality-better #x4 );; VG_IMAGE_QUALITY_BETTER
+(defparameter image-quality-force-size #x7FFFFFFF );; VG_IMAGE_QUALITY_FORCE_SIZE
 (export '(image-quality-nonantialiased image-quality-faster
           image-quality-better image-quality-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:346:9)
-;;  color-ramp-spread-mode (was _VGColorRampSpreadMode)
 ;;
-(defconstant color-ramp-spread-pad #x1C00 );; VG_COLOR_RAMP_SPREAD_PAD
-(defconstant color-ramp-spread-repeat #x1C01 );; VG_COLOR_RAMP_SPREAD_REPEAT
-(defconstant color-ramp-spread-reflect #x1C02 );; VG_COLOR_RAMP_SPREAD_REFLECT
-(defconstant color-ramp-spread-mode-force-size #x7FFFFFFF );; VG_COLOR_RAMP_SPREAD_MODE_FORCE_SIZE
+(defctype color-ramp-spread-mode :uint);; was _VGColorRampSpreadMode
+(export 'color-ramp-spread-mode)
+(defparameter color-ramp-spread-pad #x1C00 );; VG_COLOR_RAMP_SPREAD_PAD
+(defparameter color-ramp-spread-repeat #x1C01 );; VG_COLOR_RAMP_SPREAD_REPEAT
+(defparameter color-ramp-spread-reflect #x1C02 );; VG_COLOR_RAMP_SPREAD_REFLECT
+(defparameter color-ramp-spread-mode-force-size #x7FFFFFFF );; VG_COLOR_RAMP_SPREAD_MODE_FORCE_SIZE
 (export '(color-ramp-spread-pad color-ramp-spread-repeat
           color-ramp-spread-reflect color-ramp-spread-mode-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:317:9)
-;;  paint-param-type (was _VGPaintParamType)
 ;;
-(defconstant paint-type #x1A00 );; VG_PAINT_TYPE
-(defconstant paint-color #x1A01 );; VG_PAINT_COLOR
-(defconstant paint-color-ramp-spread-mode #x1A02 );; VG_PAINT_COLOR_RAMP_SPREAD_MODE
-(defconstant paint-color-ramp-premultiplied #x1A07 );; VG_PAINT_COLOR_RAMP_PREMULTIPLIED
-(defconstant paint-color-ramp-stops #x1A03 );; VG_PAINT_COLOR_RAMP_STOPS
-(defconstant paint-linear-gradient #x1A04 );; VG_PAINT_LINEAR_GRADIENT
-(defconstant paint-radial-gradient #x1A05 );; VG_PAINT_RADIAL_GRADIENT
-(defconstant paint-pattern-tiling-mode #x1A06 );; VG_PAINT_PATTERN_TILING_MODE
-(defconstant paint-param-type-force-size #x7FFFFFFF );; VG_PAINT_PARAM_TYPE_FORCE_SIZE
+(defctype paint-param-type :uint);; was _VGPaintParamType
+(export 'paint-param-type)
+(defparameter paint-type #x1A00 );; VG_PAINT_TYPE
+(defparameter paint-color #x1A01 );; VG_PAINT_COLOR
+(defparameter paint-color-ramp-spread-mode #x1A02 );; VG_PAINT_COLOR_RAMP_SPREAD_MODE
+(defparameter paint-color-ramp-premultiplied #x1A07 );; VG_PAINT_COLOR_RAMP_PREMULTIPLIED
+(defparameter paint-color-ramp-stops #x1A03 );; VG_PAINT_COLOR_RAMP_STOPS
+(defparameter paint-linear-gradient #x1A04 );; VG_PAINT_LINEAR_GRADIENT
+(defparameter paint-radial-gradient #x1A05 );; VG_PAINT_RADIAL_GRADIENT
+(defparameter paint-pattern-tiling-mode #x1A06 );; VG_PAINT_PATTERN_TILING_MODE
+(defparameter paint-param-type-force-size #x7FFFFFFF );; VG_PAINT_PARAM_TYPE_FORCE_SIZE
 (export '(paint-type paint-color paint-color-ramp-spread-mode
           paint-color-ramp-premultiplied paint-color-ramp-stops
           paint-linear-gradient paint-radial-gradient paint-pattern-tiling-mode
           paint-param-type-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:337:9)
-;;  paint-type (was _VGPaintType)
 ;;
-(defconstant paint-type-color #x1B00 );; VG_PAINT_TYPE_COLOR
-(defconstant paint-type-linear-gradient #x1B01 );; VG_PAINT_TYPE_LINEAR_GRADIENT
-(defconstant paint-type-radial-gradient #x1B02 );; VG_PAINT_TYPE_RADIAL_GRADIENT
-(defconstant paint-type-pattern #x1B03 );; VG_PAINT_TYPE_PATTERN
-(defconstant paint-type-force-size #x7FFFFFFF );; VG_PAINT_TYPE_FORCE_SIZE
+(defctype paint-type :uint);; was _VGPaintType
+(export 'paint-type)
+(defparameter paint-type-color #x1B00 );; VG_PAINT_TYPE_COLOR
+(defparameter paint-type-linear-gradient #x1B01 );; VG_PAINT_TYPE_LINEAR_GRADIENT
+(defparameter paint-type-radial-gradient #x1B02 );; VG_PAINT_TYPE_RADIAL_GRADIENT
+(defparameter paint-type-pattern #x1B03 );; VG_PAINT_TYPE_PATTERN
+(defparameter paint-type-force-size #x7FFFFFFF );; VG_PAINT_TYPE_FORCE_SIZE
 (export '(paint-type-color paint-type-linear-gradient
           paint-type-radial-gradient paint-type-pattern paint-type-force-size))
-
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:303:9)
-;;  fill-rule (was _VGFillRule)
 ;;
-(defconstant even-odd #x1900 );; VG_EVEN_ODD
-(defconstant non-zero #x1901 );; VG_NON_ZERO
-(defconstant fill-rule-force-size #x7FFFFFFF );; VG_FILL_RULE_FORCE_SIZE
+(defctype fill-rule :uint);; was _VGFillRule
+(export 'fill-rule)
+(defparameter even-odd #x1900 );; VG_EVEN_ODD
+(defparameter non-zero #x1901 );; VG_NON_ZERO
+(defparameter fill-rule-force-size #x7FFFFFFF );; VG_FILL_RULE_FORCE_SIZE
 (export '(even-odd non-zero fill-rule-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:295:9)
-;;  join-style (was _VGJoinStyle)
 ;;
-(defconstant join-miter #x1800 );; VG_JOIN_MITER
-(defconstant join-round #x1801 );; VG_JOIN_ROUND
-(defconstant join-bevel #x1802 );; VG_JOIN_BEVEL
-(defconstant join-style-force-size #x7FFFFFFF );; VG_JOIN_STYLE_FORCE_SIZE
+(defctype join-style :uint);; was _VGJoinStyle
+(export 'join-style)
+(defparameter join-miter #x1800 );; VG_JOIN_MITER
+(defparameter join-round #x1801 );; VG_JOIN_ROUND
+(defparameter join-bevel #x1802 );; VG_JOIN_BEVEL
+(defparameter join-style-force-size #x7FFFFFFF );; VG_JOIN_STYLE_FORCE_SIZE
 (export '(join-miter join-round join-bevel join-style-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:287:9)
-;;  cap-style (was _VGCapStyle)
 ;;
-(defconstant cap-butt #x1700 );; VG_CAP_BUTT
-(defconstant cap-round #x1701 );; VG_CAP_ROUND
-(defconstant cap-square #x1702 );; VG_CAP_SQUARE
-(defconstant cap-style-force-size #x7FFFFFFF );; VG_CAP_STYLE_FORCE_SIZE
+(defctype cap-style :uint);; was _VGCapStyle
+(export 'cap-style)
+(defparameter cap-butt #x1700 );; VG_CAP_BUTT
+(defparameter cap-round #x1701 );; VG_CAP_ROUND
+(defparameter cap-square #x1702 );; VG_CAP_SQUARE
+(defparameter cap-style-force-size #x7FFFFFFF );; VG_CAP_STYLE_FORCE_SIZE
 (export '(cap-butt cap-round cap-square cap-style-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:258:9)
-;;  path-capabilities (was _VGPathCapabilities)
 ;;
-(defconstant path-capability-append-from #x1 );; VG_PATH_CAPABILITY_APPEND_FROM
-(defconstant path-capability-append-to #x2 );; VG_PATH_CAPABILITY_APPEND_TO
-(defconstant path-capability-modify #x4 );; VG_PATH_CAPABILITY_MODIFY
-(defconstant path-capability-transform-from #x8 );; VG_PATH_CAPABILITY_TRANSFORM_FROM
-(defconstant path-capability-transform-to #x10 );; VG_PATH_CAPABILITY_TRANSFORM_TO
-(defconstant path-capability-interpolate-from #x20 );; VG_PATH_CAPABILITY_INTERPOLATE_FROM
-(defconstant path-capability-interpolate-to #x40 );; VG_PATH_CAPABILITY_INTERPOLATE_TO
-(defconstant path-capability-path-length #x80 );; VG_PATH_CAPABILITY_PATH_LENGTH
-(defconstant path-capability-point-along-path #x100 );; VG_PATH_CAPABILITY_POINT_ALONG_PATH
-(defconstant path-capability-tangent-along-path #x200 );; VG_PATH_CAPABILITY_TANGENT_ALONG_PATH
-(defconstant path-capability-path-bounds #x400 );; VG_PATH_CAPABILITY_PATH_BOUNDS
-(defconstant path-capability-path-transformed-bounds #x800 );; VG_PATH_CAPABILITY_PATH_TRANSFORMED_BOUNDS
-(defconstant path-capability-all #xFFF );; VG_PATH_CAPABILITY_ALL
-(defconstant path-capabilities-force-size #x7FFFFFFF );; VG_PATH_CAPABILITIES_FORCE_SIZE
+(defctype path-capabilities :uint);; was _VGPathCapabilities
+(export 'path-capabilities)
+(defparameter path-capability-append-from #x1 );; VG_PATH_CAPABILITY_APPEND_FROM
+(defparameter path-capability-append-to #x2 );; VG_PATH_CAPABILITY_APPEND_TO
+(defparameter path-capability-modify #x4 );; VG_PATH_CAPABILITY_MODIFY
+(defparameter path-capability-transform-from #x8 );; VG_PATH_CAPABILITY_TRANSFORM_FROM
+(defparameter path-capability-transform-to #x10 );; VG_PATH_CAPABILITY_TRANSFORM_TO
+(defparameter path-capability-interpolate-from #x20 );; VG_PATH_CAPABILITY_INTERPOLATE_FROM
+(defparameter path-capability-interpolate-to #x40 );; VG_PATH_CAPABILITY_INTERPOLATE_TO
+(defparameter path-capability-path-length #x80 );; VG_PATH_CAPABILITY_PATH_LENGTH
+(defparameter path-capability-point-along-path #x100 );; VG_PATH_CAPABILITY_POINT_ALONG_PATH
+(defparameter path-capability-tangent-along-path #x200 );; VG_PATH_CAPABILITY_TANGENT_ALONG_PATH
+(defparameter path-capability-path-bounds #x400 );; VG_PATH_CAPABILITY_PATH_BOUNDS
+(defparameter path-capability-path-transformed-bounds #x800 );; VG_PATH_CAPABILITY_PATH_TRANSFORMED_BOUNDS
+(defparameter path-capability-all #xFFF );; VG_PATH_CAPABILITY_ALL
+(defparameter path-capabilities-force-size #x7FFFFFFF );; VG_PATH_CAPABILITIES_FORCE_SIZE
 (export '(path-capability-append-from path-capability-append-to
           path-capability-modify path-capability-transform-from
           path-capability-transform-to path-capability-interpolate-from
@@ -139,33 +149,34 @@
           path-capability-all path-capabilities-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:229:9)
-;;  path-command (was _VGPathCommand)
 ;;
-(defconstant move-to-abs #x2 );; VG_MOVE_TO_ABS
-(defconstant move-to-rel #x3 );; VG_MOVE_TO_REL
-(defconstant line-to-abs #x4 );; VG_LINE_TO_ABS
-(defconstant line-to-rel #x5 );; VG_LINE_TO_REL
-(defconstant hline-to-abs #x6 );; VG_HLINE_TO_ABS
-(defconstant hline-to-rel #x7 );; VG_HLINE_TO_REL
-(defconstant vline-to-abs #x8 );; VG_VLINE_TO_ABS
-(defconstant vline-to-rel #x9 );; VG_VLINE_TO_REL
-(defconstant quad-to-abs #xA );; VG_QUAD_TO_ABS
-(defconstant quad-to-rel #xB );; VG_QUAD_TO_REL
-(defconstant cubic-to-abs #xC );; VG_CUBIC_TO_ABS
-(defconstant cubic-to-rel #xD );; VG_CUBIC_TO_REL
-(defconstant squad-to-abs #xE );; VG_SQUAD_TO_ABS
-(defconstant squad-to-rel #xF );; VG_SQUAD_TO_REL
-(defconstant scubic-to-abs #x10 );; VG_SCUBIC_TO_ABS
-(defconstant scubic-to-rel #x11 );; VG_SCUBIC_TO_REL
-(defconstant sccwarc-to-abs #x12 );; VG_SCCWARC_TO_ABS
-(defconstant sccwarc-to-rel #x13 );; VG_SCCWARC_TO_REL
-(defconstant scwarc-to-abs #x14 );; VG_SCWARC_TO_ABS
-(defconstant scwarc-to-rel #x15 );; VG_SCWARC_TO_REL
-(defconstant lccwarc-to-abs #x16 );; VG_LCCWARC_TO_ABS
-(defconstant lccwarc-to-rel #x17 );; VG_LCCWARC_TO_REL
-(defconstant lcwarc-to-abs #x18 );; VG_LCWARC_TO_ABS
-(defconstant lcwarc-to-rel #x19 );; VG_LCWARC_TO_REL
-(defconstant path-command-force-size #x7FFFFFFF );; VG_PATH_COMMAND_FORCE_SIZE
+(defctype path-command :uint);; was _VGPathCommand
+(export 'path-command)
+(defparameter move-to-abs #x2 );; VG_MOVE_TO_ABS
+(defparameter move-to-rel #x3 );; VG_MOVE_TO_REL
+(defparameter line-to-abs #x4 );; VG_LINE_TO_ABS
+(defparameter line-to-rel #x5 );; VG_LINE_TO_REL
+(defparameter hline-to-abs #x6 );; VG_HLINE_TO_ABS
+(defparameter hline-to-rel #x7 );; VG_HLINE_TO_REL
+(defparameter vline-to-abs #x8 );; VG_VLINE_TO_ABS
+(defparameter vline-to-rel #x9 );; VG_VLINE_TO_REL
+(defparameter quad-to-abs #xA );; VG_QUAD_TO_ABS
+(defparameter quad-to-rel #xB );; VG_QUAD_TO_REL
+(defparameter cubic-to-abs #xC );; VG_CUBIC_TO_ABS
+(defparameter cubic-to-rel #xD );; VG_CUBIC_TO_REL
+(defparameter squad-to-abs #xE );; VG_SQUAD_TO_ABS
+(defparameter squad-to-rel #xF );; VG_SQUAD_TO_REL
+(defparameter scubic-to-abs #x10 );; VG_SCUBIC_TO_ABS
+(defparameter scubic-to-rel #x11 );; VG_SCUBIC_TO_REL
+(defparameter sccwarc-to-abs #x12 );; VG_SCCWARC_TO_ABS
+(defparameter sccwarc-to-rel #x13 );; VG_SCCWARC_TO_REL
+(defparameter scwarc-to-abs #x14 );; VG_SCWARC_TO_ABS
+(defparameter scwarc-to-rel #x15 );; VG_SCWARC_TO_REL
+(defparameter lccwarc-to-abs #x16 );; VG_LCCWARC_TO_ABS
+(defparameter lccwarc-to-rel #x17 );; VG_LCCWARC_TO_REL
+(defparameter lcwarc-to-abs #x18 );; VG_LCWARC_TO_ABS
+(defparameter lcwarc-to-rel #x19 );; VG_LCWARC_TO_REL
+(defparameter path-command-force-size #x7FFFFFFF );; VG_PATH_COMMAND_FORCE_SIZE
 (export '(move-to-abs move-to-rel line-to-abs line-to-rel hline-to-abs
           hline-to-rel vline-to-abs vline-to-rel quad-to-abs quad-to-rel
           cubic-to-abs cubic-to-rel squad-to-abs squad-to-rel scubic-to-abs
@@ -174,49 +185,38 @@
           lcwarc-to-rel path-command-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:209:9)
-;;  path-segment (was _VGPathSegment)
 ;;
-(defconstant close-path #x0 );; VG_CLOSE_PATH
-(defconstant move-to #x2 );; VG_MOVE_TO
-(defconstant line-to #x4 );; VG_LINE_TO
-(defconstant hline-to #x6 );; VG_HLINE_TO
-(defconstant vline-to #x8 );; VG_VLINE_TO
-(defconstant quad-to #xA );; VG_QUAD_TO
-(defconstant cubic-to #xC );; VG_CUBIC_TO
-(defconstant squad-to #xE );; VG_SQUAD_TO
-(defconstant scubic-to #x10 );; VG_SCUBIC_TO
-(defconstant sccwarc-to #x12 );; VG_SCCWARC_TO
-(defconstant scwarc-to #x14 );; VG_SCWARC_TO
-(defconstant lccwarc-to #x16 );; VG_LCCWARC_TO
-(defconstant lcwarc-to #x18 );; VG_LCWARC_TO
-(defconstant segment-mask #x1E );; VG_SEGMENT_MASK
-(defconstant path-segment-force-size #x7FFFFFFF );; VG_PATH_SEGMENT_FORCE_SIZE
+(defctype path-segment :uint);; was _VGPathSegment
+(export 'path-segment)
+(defparameter close-path #x0 );; VG_CLOSE_PATH
+(defparameter move-to #x2 );; VG_MOVE_TO
+(defparameter line-to #x4 );; VG_LINE_TO
+(defparameter hline-to #x6 );; VG_HLINE_TO
+(defparameter vline-to #x8 );; VG_VLINE_TO
+(defparameter quad-to #xA );; VG_QUAD_TO
+(defparameter cubic-to #xC );; VG_CUBIC_TO
+(defparameter squad-to #xE );; VG_SQUAD_TO
+(defparameter scubic-to #x10 );; VG_SCUBIC_TO
+(defparameter sccwarc-to #x12 );; VG_SCCWARC_TO
+(defparameter scwarc-to #x14 );; VG_SCWARC_TO
+(defparameter lccwarc-to #x16 );; VG_LCCWARC_TO
+(defparameter lcwarc-to #x18 );; VG_LCWARC_TO
+(defparameter segment-mask #x1E );; VG_SEGMENT_MASK
+(defparameter path-segment-force-size #x7FFFFFFF );; VG_PATH_SEGMENT_FORCE_SIZE
 (export '(close-path move-to line-to hline-to vline-to quad-to cubic-to
           squad-to scubic-to sccwarc-to scwarc-to lccwarc-to lcwarc-to
           segment-mask path-segment-force-size))
-
-;;------------------------------------------------------------------------------
-;; (/opt/vc/include/VG/openvg.h:310:9)
-;;  paint-mode (was _VGPaintMode)
-;;
-(defconstant stroke-path #x1 );; VG_STROKE_PATH
-(defconstant fill-path #x2 );; VG_FILL_PATH
-(defconstant paint-mode-force-size #x7FFFFFFF );; VG_PAINT_MODE_FORCE_SIZE
-(export '(stroke-path fill-path paint-mode-force-size))
-
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:483:9)
 ;;
-(defcenum string-id ;; _VGStringID
-  (:vendor #x2300) ;;VG_VENDOR
-  (:renderer #x2301) ;;VG_RENDERER
-  (:version #x2302) ;;VG_VERSION
-  (:extensions #x2303) ;;VG_EXTENSIONS
-  (:string-id-force-size #x7FFFFFFF) ;;VG_STRING_ID_FORCE_SIZE
-)
+(defctype string-id :uint);; was _VGStringID
 (export 'string-id)
-
-
+(defparameter vendor #x2300 );; VG_VENDOR
+(defparameter renderer #x2301 );; VG_RENDERER
+(defparameter version #x2302 );; VG_VERSION
+(defparameter extensions #x2303 );; VG_EXTENSIONS
+(defparameter string-id-force-size #x7FFFFFFF );; VG_STRING_ID_FORCE_SIZE
+(export '(vendor renderer version extensions string-id-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:739:42)
 ;;
@@ -231,25 +231,22 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:469:9)
 ;;
-(defcenum hardware-query-type ;; _VGHardwareQueryType
-  (:image-format-query #x2100) ;;VG_IMAGE_FORMAT_QUERY
-  (:path-datatype-query #x2101) ;;VG_PATH_DATATYPE_QUERY
-  (:hardware-query-type-force-size #x7FFFFFFF) ;;VG_HARDWARE_QUERY_TYPE_FORCE_SIZE
-)
+(defctype hardware-query-type :uint);; was _VGHardwareQueryType
 (export 'hardware-query-type)
-
-
+(defparameter image-format-query #x2100 );; VG_IMAGE_FORMAT_QUERY
+(defparameter path-datatype-query #x2101 );; VG_PATH_DATATYPE_QUERY
+(defparameter hardware-query-type-force-size #x7FFFFFFF );; VG_HARDWARE_QUERY_TYPE_FORCE_SIZE
+(export '(image-format-query path-datatype-query hardware-query-type-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:476:9)
 ;;
-(defcenum hardware-query-result ;; _VGHardwareQueryResult
-  (:hardware-accelerated #x2200) ;;VG_HARDWARE_ACCELERATED
-  (:hardware-unaccelerated #x2201) ;;VG_HARDWARE_UNACCELERATED
-  (:hardware-query-result-force-size #x7FFFFFFF) ;;VG_HARDWARE_QUERY_RESULT_FORCE_SIZE
-)
+(defctype hardware-query-result :uint);; was _VGHardwareQueryResult
 (export 'hardware-query-result)
-
-
+(defparameter hardware-accelerated #x2200 );; VG_HARDWARE_ACCELERATED
+(defparameter hardware-unaccelerated #x2201 );; VG_HARDWARE_UNACCELERATED
+(defparameter hardware-query-result-force-size #x7FFFFFFF );; VG_HARDWARE_QUERY_RESULT_FORCE_SIZE
+(export '(hardware-accelerated hardware-unaccelerated
+          hardware-query-result-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:735:48)
 ;;
@@ -265,16 +262,14 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:439:9)
 ;;
-(defcenum image-channel ;; _VGImageChannel
-  (:red #x8) ;;VG_RED
-  (:green #x4) ;;VG_GREEN
-  (:blue #x2) ;;VG_BLUE
-  (:alpha #x1) ;;VG_ALPHA
-  (:image-channel-force-size #x7FFFFFFF) ;;VG_IMAGE_CHANNEL_FORCE_SIZE
-)
+(defctype image-channel :uint);; was _VGImageChannel
 (export 'image-channel)
-
-
+(defparameter red #x8 );; VG_RED
+(defparameter green #x4 );; VG_GREEN
+(defparameter blue #x2 );; VG_BLUE
+(defparameter alpha #x1 );; VG_ALPHA
+(defparameter image-channel-force-size #x7FFFFFFF );; VG_IMAGE_CHANNEL_FORCE_SIZE
+(export '(red green blue alpha image-channel-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:728:31)
 ;;
@@ -312,16 +307,14 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:354:9)
 ;;
-(defcenum tiling-mode ;; _VGTilingMode
-  (:tile-fill #x1D00) ;;VG_TILE_FILL
-  (:tile-pad #x1D01) ;;VG_TILE_PAD
-  (:tile-repeat #x1D02) ;;VG_TILE_REPEAT
-  (:tile-reflect #x1D03) ;;VG_TILE_REFLECT
-  (:tiling-mode-force-size #x7FFFFFFF) ;;VG_TILING_MODE_FORCE_SIZE
-)
+(defctype tiling-mode :uint);; was _VGTilingMode
 (export 'tiling-mode)
-
-
+(defparameter tile-fill #x1D00 );; VG_TILE_FILL
+(defparameter tile-pad #x1D01 );; VG_TILE_PAD
+(defparameter tile-repeat #x1D02 );; VG_TILE_REPEAT
+(defparameter tile-reflect #x1D03 );; VG_TILE_REFLECT
+(defparameter tiling-mode-force-size #x7FFFFFFF );; VG_TILING_MODE_FORCE_SIZE
+(export '(tile-fill tile-pad tile-repeat tile-reflect tiling-mode-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:717:31)
 ;;
@@ -506,52 +499,57 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:363:9)
 ;;
-(defcenum image-format ;; _VGImageFormat
-  (:s-rgbx-8888 #x0) ;;VG_sRGBX_8888
-  (:s-rgba-8888 #x1) ;;VG_sRGBA_8888
-  (:s-rgba-8888-pre #x2) ;;VG_sRGBA_8888_PRE
-  (:s-rgb-565 #x3) ;;VG_sRGB_565
-  (:s-rgba-5551 #x4) ;;VG_sRGBA_5551
-  (:s-rgba-4444 #x5) ;;VG_sRGBA_4444
-  (:s-l-8 #x6) ;;VG_sL_8
-  (:l-rgbx-8888 #x7) ;;VG_lRGBX_8888
-  (:l-rgba-8888 #x8) ;;VG_lRGBA_8888
-  (:l-rgba-8888-pre #x9) ;;VG_lRGBA_8888_PRE
-  (:l-l-8 #xA) ;;VG_lL_8
-  (:a-8 #xB) ;;VG_A_8
-  (:bw-1 #xC) ;;VG_BW_1
-  (:a-1 #xD) ;;VG_A_1
-  (:a-4 #xE) ;;VG_A_4
-  (:s-xrgb-8888 #x40) ;;VG_sXRGB_8888
-  (:s-argb-8888 #x41) ;;VG_sARGB_8888
-  (:s-argb-8888-pre #x42) ;;VG_sARGB_8888_PRE
-  (:s-argb-1555 #x44) ;;VG_sARGB_1555
-  (:s-argb-4444 #x45) ;;VG_sARGB_4444
-  (:l-xrgb-8888 #x47) ;;VG_lXRGB_8888
-  (:l-argb-8888 #x48) ;;VG_lARGB_8888
-  (:l-argb-8888-pre #x49) ;;VG_lARGB_8888_PRE
-  (:s-bgrx-8888 #x80) ;;VG_sBGRX_8888
-  (:s-bgra-8888 #x81) ;;VG_sBGRA_8888
-  (:s-bgra-8888-pre #x82) ;;VG_sBGRA_8888_PRE
-  (:s-bgr-565 #x83) ;;VG_sBGR_565
-  (:s-bgra-5551 #x84) ;;VG_sBGRA_5551
-  (:s-bgra-4444 #x85) ;;VG_sBGRA_4444
-  (:l-bgrx-8888 #x87) ;;VG_lBGRX_8888
-  (:l-bgra-8888 #x88) ;;VG_lBGRA_8888
-  (:l-bgra-8888-pre #x89) ;;VG_lBGRA_8888_PRE
-  (:s-xbgr-8888 #xC0) ;;VG_sXBGR_8888
-  (:s-abgr-8888 #xC1) ;;VG_sABGR_8888
-  (:s-abgr-8888-pre #xC2) ;;VG_sABGR_8888_PRE
-  (:s-abgr-1555 #xC4) ;;VG_sABGR_1555
-  (:s-abgr-4444 #xC5) ;;VG_sABGR_4444
-  (:l-xbgr-8888 #xC7) ;;VG_lXBGR_8888
-  (:l-abgr-8888 #xC8) ;;VG_lABGR_8888
-  (:l-abgr-8888-pre #xC9) ;;VG_lABGR_8888_PRE
-  (:image-format-force-size #x7FFFFFFF) ;;VG_IMAGE_FORMAT_FORCE_SIZE
-)
+(defctype image-format :uint);; was _VGImageFormat
 (export 'image-format)
-
-
+(defparameter s-rgbx-8888 #x0 );; VG_sRGBX_8888
+(defparameter s-rgba-8888 #x1 );; VG_sRGBA_8888
+(defparameter s-rgba-8888-pre #x2 );; VG_sRGBA_8888_PRE
+(defparameter s-rgb-565 #x3 );; VG_sRGB_565
+(defparameter s-rgba-5551 #x4 );; VG_sRGBA_5551
+(defparameter s-rgba-4444 #x5 );; VG_sRGBA_4444
+(defparameter s-l-8 #x6 );; VG_sL_8
+(defparameter l-rgbx-8888 #x7 );; VG_lRGBX_8888
+(defparameter l-rgba-8888 #x8 );; VG_lRGBA_8888
+(defparameter l-rgba-8888-pre #x9 );; VG_lRGBA_8888_PRE
+(defparameter l-l-8 #xA );; VG_lL_8
+(defparameter a-8 #xB );; VG_A_8
+(defparameter bw-1 #xC );; VG_BW_1
+(defparameter a-1 #xD );; VG_A_1
+(defparameter a-4 #xE );; VG_A_4
+(defparameter s-xrgb-8888 #x40 );; VG_sXRGB_8888
+(defparameter s-argb-8888 #x41 );; VG_sARGB_8888
+(defparameter s-argb-8888-pre #x42 );; VG_sARGB_8888_PRE
+(defparameter s-argb-1555 #x44 );; VG_sARGB_1555
+(defparameter s-argb-4444 #x45 );; VG_sARGB_4444
+(defparameter l-xrgb-8888 #x47 );; VG_lXRGB_8888
+(defparameter l-argb-8888 #x48 );; VG_lARGB_8888
+(defparameter l-argb-8888-pre #x49 );; VG_lARGB_8888_PRE
+(defparameter s-bgrx-8888 #x80 );; VG_sBGRX_8888
+(defparameter s-bgra-8888 #x81 );; VG_sBGRA_8888
+(defparameter s-bgra-8888-pre #x82 );; VG_sBGRA_8888_PRE
+(defparameter s-bgr-565 #x83 );; VG_sBGR_565
+(defparameter s-bgra-5551 #x84 );; VG_sBGRA_5551
+(defparameter s-bgra-4444 #x85 );; VG_sBGRA_4444
+(defparameter l-bgrx-8888 #x87 );; VG_lBGRX_8888
+(defparameter l-bgra-8888 #x88 );; VG_lBGRA_8888
+(defparameter l-bgra-8888-pre #x89 );; VG_lBGRA_8888_PRE
+(defparameter s-xbgr-8888 #xC0 );; VG_sXBGR_8888
+(defparameter s-abgr-8888 #xC1 );; VG_sABGR_8888
+(defparameter s-abgr-8888-pre #xC2 );; VG_sABGR_8888_PRE
+(defparameter s-abgr-1555 #xC4 );; VG_sABGR_1555
+(defparameter s-abgr-4444 #xC5 );; VG_sABGR_4444
+(defparameter l-xbgr-8888 #xC7 );; VG_lXBGR_8888
+(defparameter l-abgr-8888 #xC8 );; VG_lABGR_8888
+(defparameter l-abgr-8888-pre #xC9 );; VG_lABGR_8888_PRE
+(defparameter image-format-force-size #x7FFFFFFF );; VG_IMAGE_FORMAT_FORCE_SIZE
+(export '(s-rgbx-8888 s-rgba-8888 s-rgba-8888-pre s-rgb-565 s-rgba-5551
+          s-rgba-4444 s-l-8 l-rgbx-8888 l-rgba-8888 l-rgba-8888-pre l-l-8 a-8
+          bw-1 a-1 a-4 s-xrgb-8888 s-argb-8888 s-argb-8888-pre s-argb-1555
+          s-argb-4444 l-xrgb-8888 l-argb-8888 l-argb-8888-pre s-bgrx-8888
+          s-bgra-8888 s-bgra-8888-pre s-bgr-565 s-bgra-5551 s-bgra-4444
+          l-bgrx-8888 l-bgra-8888 l-bgra-8888-pre s-xbgr-8888 s-abgr-8888
+          s-abgr-8888-pre s-abgr-1555 s-abgr-4444 l-xbgr-8888 l-abgr-8888
+          l-abgr-8888-pre image-format-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:663:31)
 ;;
@@ -787,15 +785,22 @@
 (export '&set-color)
 
 
-
-
+;;------------------------------------------------------------------------------
+;; (/opt/vc/include/VG/openvg.h:310:9)
+;;
+(defctype paint-mode :uint);; was _VGPaintMode
+(export 'paint-mode)
+(defparameter stroke-path #x1 );; VG_STROKE_PATH
+(defparameter fill-path #x2 );; VG_FILL_PATH
+(defparameter paint-mode-force-size #x7FFFFFFF );; VG_PAINT_MODE_FORCE_SIZE
+(export '(stroke-path fill-path paint-mode-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:624:34)
 ;;
 (declaim (inline &get-paint))
 (defcfun ("vgGetPaint" &get-paint) :UINT
   "see: (/opt/vc/include/VG/openvg.h:624:34)"
-  (paint-mode  :uint) ;; paintMode #<typedef VGPaintMode> ***
+  (paint-mode  paint-mode) ;; paintMode #<typedef VGPaintMode>
 )
 (export '&get-paint)
 
@@ -1021,16 +1026,15 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:193:9)
 ;;
-(defcenum path-datatype ;; _VGPathDatatype
-  (:path-datatype-s-8 #x0) ;;VG_PATH_DATATYPE_S_8
-  (:path-datatype-s-16 #x1) ;;VG_PATH_DATATYPE_S_16
-  (:path-datatype-s-32 #x2) ;;VG_PATH_DATATYPE_S_32
-  (:path-datatype-f #x3) ;;VG_PATH_DATATYPE_F
-  (:path-datatype-force-size #x7FFFFFFF) ;;VG_PATH_DATATYPE_FORCE_SIZE
-)
+(defctype path-datatype :uint);; was _VGPathDatatype
 (export 'path-datatype)
-
-
+(defparameter path-datatype-s-8 #x0 );; VG_PATH_DATATYPE_S_8
+(defparameter path-datatype-s-16 #x1 );; VG_PATH_DATATYPE_S_16
+(defparameter path-datatype-s-32 #x2 );; VG_PATH_DATATYPE_S_32
+(defparameter path-datatype-f #x3 );; VG_PATH_DATATYPE_F
+(defparameter path-datatype-force-size #x7FFFFFFF );; VG_PATH_DATATYPE_FORCE_SIZE
+(export '(path-datatype-s-8 path-datatype-s-16 path-datatype-s-32
+          path-datatype-f path-datatype-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:581:33)
 ;;
@@ -1121,18 +1125,17 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:180:9)
 ;;
-(defcenum mask-operation ;; _VGMaskOperation
-  (:clear-mask #x1500) ;;VG_CLEAR_MASK
-  (:fill-mask #x1501) ;;VG_FILL_MASK
-  (:set-mask #x1502) ;;VG_SET_MASK
-  (:union-mask #x1503) ;;VG_UNION_MASK
-  (:intersect-mask #x1504) ;;VG_INTERSECT_MASK
-  (:subtract-mask #x1505) ;;VG_SUBTRACT_MASK
-  (:mask-operation-force-size #x7FFFFFFF) ;;VG_MASK_OPERATION_FORCE_SIZE
-)
+(defctype mask-operation :uint);; was _VGMaskOperation
 (export 'mask-operation)
-
-
+(defparameter clear-mask #x1500 );; VG_CLEAR_MASK
+(defparameter fill-mask #x1501 );; VG_FILL_MASK
+(defparameter set-mask #x1502 );; VG_SET_MASK
+(defparameter union-mask #x1503 );; VG_UNION_MASK
+(defparameter intersect-mask #x1504 );; VG_INTERSECT_MASK
+(defparameter subtract-mask #x1505 );; VG_SUBTRACT_MASK
+(defparameter mask-operation-force-size #x7FFFFFFF );; VG_MASK_OPERATION_FORCE_SIZE
+(export '(clear-mask fill-mask set-mask union-mask intersect-mask subtract-mask
+          mask-operation-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:565:31)
 ;;
@@ -1373,49 +1376,57 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:87:9)
 ;;
-(defcenum param-type ;; _VGParamType
-  (:matrix-mode #x1100) ;;VG_MATRIX_MODE
-  (:fill-rule #x1101) ;;VG_FILL_RULE
-  (:image-quality #x1102) ;;VG_IMAGE_QUALITY
-  (:rendering-quality #x1103) ;;VG_RENDERING_QUALITY
-  (:blend-mode #x1104) ;;VG_BLEND_MODE
-  (:image-mode #x1105) ;;VG_IMAGE_MODE
-  (:scissor-rects #x1106) ;;VG_SCISSOR_RECTS
-  (:color-transform #x1170) ;;VG_COLOR_TRANSFORM
-  (:color-transform-values #x1171) ;;VG_COLOR_TRANSFORM_VALUES
-  (:stroke-line-width #x1110) ;;VG_STROKE_LINE_WIDTH
-  (:stroke-cap-style #x1111) ;;VG_STROKE_CAP_STYLE
-  (:stroke-join-style #x1112) ;;VG_STROKE_JOIN_STYLE
-  (:stroke-miter-limit #x1113) ;;VG_STROKE_MITER_LIMIT
-  (:stroke-dash-pattern #x1114) ;;VG_STROKE_DASH_PATTERN
-  (:stroke-dash-phase #x1115) ;;VG_STROKE_DASH_PHASE
-  (:stroke-dash-phase-reset #x1116) ;;VG_STROKE_DASH_PHASE_RESET
-  (:tile-fill-color #x1120) ;;VG_TILE_FILL_COLOR
-  (:clear-color #x1121) ;;VG_CLEAR_COLOR
-  (:glyph-origin #x1122) ;;VG_GLYPH_ORIGIN
-  (:masking #x1130) ;;VG_MASKING
-  (:scissoring #x1131) ;;VG_SCISSORING
-  (:pixel-layout #x1140) ;;VG_PIXEL_LAYOUT
-  (:screen-layout #x1141) ;;VG_SCREEN_LAYOUT
-  (:filter-format-linear #x1150) ;;VG_FILTER_FORMAT_LINEAR
-  (:filter-format-premultiplied #x1151) ;;VG_FILTER_FORMAT_PREMULTIPLIED
-  (:filter-channel-mask #x1152) ;;VG_FILTER_CHANNEL_MASK
-  (:max-scissor-rects #x1160) ;;VG_MAX_SCISSOR_RECTS
-  (:max-dash-count #x1161) ;;VG_MAX_DASH_COUNT
-  (:max-kernel-size #x1162) ;;VG_MAX_KERNEL_SIZE
-  (:max-separable-kernel-size #x1163) ;;VG_MAX_SEPARABLE_KERNEL_SIZE
-  (:max-color-ramp-stops #x1164) ;;VG_MAX_COLOR_RAMP_STOPS
-  (:max-image-width #x1165) ;;VG_MAX_IMAGE_WIDTH
-  (:max-image-height #x1166) ;;VG_MAX_IMAGE_HEIGHT
-  (:max-image-pixels #x1167) ;;VG_MAX_IMAGE_PIXELS
-  (:max-image-bytes #x1168) ;;VG_MAX_IMAGE_BYTES
-  (:max-float #x1169) ;;VG_MAX_FLOAT
-  (:max-gaussian-std-deviation #x116A) ;;VG_MAX_GAUSSIAN_STD_DEVIATION
-  (:param-type-force-size #x7FFFFFFF) ;;VG_PARAM_TYPE_FORCE_SIZE
-)
+(defctype param-type :uint);; was _VGParamType
 (export 'param-type)
-
-
+(defparameter matrix-mode #x1100 );; VG_MATRIX_MODE
+(defparameter fill-rule #x1101 );; VG_FILL_RULE
+(defparameter image-quality #x1102 );; VG_IMAGE_QUALITY
+(defparameter rendering-quality #x1103 );; VG_RENDERING_QUALITY
+(defparameter blend-mode #x1104 );; VG_BLEND_MODE
+(defparameter image-mode #x1105 );; VG_IMAGE_MODE
+(defparameter scissor-rects #x1106 );; VG_SCISSOR_RECTS
+(defparameter color-transform #x1170 );; VG_COLOR_TRANSFORM
+(defparameter color-transform-values #x1171 );; VG_COLOR_TRANSFORM_VALUES
+(defparameter stroke-line-width #x1110 );; VG_STROKE_LINE_WIDTH
+(defparameter stroke-cap-style #x1111 );; VG_STROKE_CAP_STYLE
+(defparameter stroke-join-style #x1112 );; VG_STROKE_JOIN_STYLE
+(defparameter stroke-miter-limit #x1113 );; VG_STROKE_MITER_LIMIT
+(defparameter stroke-dash-pattern #x1114 );; VG_STROKE_DASH_PATTERN
+(defparameter stroke-dash-phase #x1115 );; VG_STROKE_DASH_PHASE
+(defparameter stroke-dash-phase-reset #x1116 );; VG_STROKE_DASH_PHASE_RESET
+(defparameter tile-fill-color #x1120 );; VG_TILE_FILL_COLOR
+(defparameter clear-color #x1121 );; VG_CLEAR_COLOR
+(defparameter glyph-origin #x1122 );; VG_GLYPH_ORIGIN
+(defparameter masking #x1130 );; VG_MASKING
+(defparameter scissoring #x1131 );; VG_SCISSORING
+(defparameter pixel-layout #x1140 );; VG_PIXEL_LAYOUT
+(defparameter screen-layout #x1141 );; VG_SCREEN_LAYOUT
+(defparameter filter-format-linear #x1150 );; VG_FILTER_FORMAT_LINEAR
+(defparameter filter-format-premultiplied #x1151 );; VG_FILTER_FORMAT_PREMULTIPLIED
+(defparameter filter-channel-mask #x1152 );; VG_FILTER_CHANNEL_MASK
+(defparameter max-scissor-rects #x1160 );; VG_MAX_SCISSOR_RECTS
+(defparameter max-dash-count #x1161 );; VG_MAX_DASH_COUNT
+(defparameter max-kernel-size #x1162 );; VG_MAX_KERNEL_SIZE
+(defparameter max-separable-kernel-size #x1163 );; VG_MAX_SEPARABLE_KERNEL_SIZE
+(defparameter max-color-ramp-stops #x1164 );; VG_MAX_COLOR_RAMP_STOPS
+(defparameter max-image-width #x1165 );; VG_MAX_IMAGE_WIDTH
+(defparameter max-image-height #x1166 );; VG_MAX_IMAGE_HEIGHT
+(defparameter max-image-pixels #x1167 );; VG_MAX_IMAGE_PIXELS
+(defparameter max-image-bytes #x1168 );; VG_MAX_IMAGE_BYTES
+(defparameter max-float #x1169 );; VG_MAX_FLOAT
+(defparameter max-gaussian-std-deviation #x116A );; VG_MAX_GAUSSIAN_STD_DEVIATION
+(defparameter param-type-force-size #x7FFFFFFF );; VG_PARAM_TYPE_FORCE_SIZE
+(export '(matrix-mode fill-rule image-quality rendering-quality blend-mode
+          image-mode scissor-rects color-transform color-transform-values
+          stroke-line-width stroke-cap-style stroke-join-style
+          stroke-miter-limit stroke-dash-pattern stroke-dash-phase
+          stroke-dash-phase-reset tile-fill-color clear-color glyph-origin
+          masking scissoring pixel-layout screen-layout filter-format-linear
+          filter-format-premultiplied filter-channel-mask max-scissor-rects
+          max-dash-count max-kernel-size max-separable-kernel-size
+          max-color-ramp-stops max-image-width max-image-height
+          max-image-pixels max-image-bytes max-float max-gaussian-std-deviation
+          param-type-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:523:31)
 ;;
@@ -1548,21 +1559,22 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:73:9)
 ;;
-(defcenum error-code ;; _VGErrorCode
-  (:no-error #x0) ;;VG_NO_ERROR
-  (:bad-handle-error #x1000) ;;VG_BAD_HANDLE_ERROR
-  (:illegal-argument-error #x1001) ;;VG_ILLEGAL_ARGUMENT_ERROR
-  (:out-of-memory-error #x1002) ;;VG_OUT_OF_MEMORY_ERROR
-  (:path-capability-error #x1003) ;;VG_PATH_CAPABILITY_ERROR
-  (:unsupported-image-format-error #x1004) ;;VG_UNSUPPORTED_IMAGE_FORMAT_ERROR
-  (:unsupported-path-format-error #x1005) ;;VG_UNSUPPORTED_PATH_FORMAT_ERROR
-  (:image-in-use-error #x1006) ;;VG_IMAGE_IN_USE_ERROR
-  (:no-context-error #x1007) ;;VG_NO_CONTEXT_ERROR
-  (:error-code-force-size #x7FFFFFFF) ;;VG_ERROR_CODE_FORCE_SIZE
-)
+(defctype error-code :uint);; was _VGErrorCode
 (export 'error-code)
-
-
+(defparameter no-error #x0 );; VG_NO_ERROR
+(defparameter bad-handle-error #x1000 );; VG_BAD_HANDLE_ERROR
+(defparameter illegal-argument-error #x1001 );; VG_ILLEGAL_ARGUMENT_ERROR
+(defparameter out-of-memory-error #x1002 );; VG_OUT_OF_MEMORY_ERROR
+(defparameter path-capability-error #x1003 );; VG_PATH_CAPABILITY_ERROR
+(defparameter unsupported-image-format-error #x1004 );; VG_UNSUPPORTED_IMAGE_FORMAT_ERROR
+(defparameter unsupported-path-format-error #x1005 );; VG_UNSUPPORTED_PATH_FORMAT_ERROR
+(defparameter image-in-use-error #x1006 );; VG_IMAGE_IN_USE_ERROR
+(defparameter no-context-error #x1007 );; VG_NO_CONTEXT_ERROR
+(defparameter error-code-force-size #x7FFFFFFF );; VG_ERROR_CODE_FORCE_SIZE
+(export '(no-error bad-handle-error illegal-argument-error out-of-memory-error
+          path-capability-error unsupported-image-format-error
+          unsupported-path-format-error image-in-use-error no-context-error
+          error-code-force-size))
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:506:38)
 ;;

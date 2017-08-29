@@ -491,7 +491,10 @@
 
 ;;-----------------------------------------------------------------------------
 (defun set-fv ( type count values)
-  (&set-fv type count values))
+ (declare  (optimize (speed 3) (safety 0) (debug 0)))
+
+
+  (&set-fv  type count values))
 (export 'set-fv)
 
 
