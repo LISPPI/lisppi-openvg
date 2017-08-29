@@ -90,12 +90,12 @@
 ;;
 (defctype arc-type xfixnum);; was _VGUArcType
 (export 'arc-type)
-(defparameter vgu-arc-open #xF100 );; VGU_ARC_OPEN
-(export 'vgu-arc-open)
-(defparameter vgu-arc-chord #xF101 );; VGU_ARC_CHORD
-(export 'vgu-arc-chord)
-(defparameter vgu-arc-pie #xF102 );; VGU_ARC_PIE
-(export 'vgu-arc-pie)
+(defparameter arc-open #xF100 );; VGU_ARC_OPEN
+(export 'arc-open)
+(defparameter arc-chord #xF101 );; VGU_ARC_CHORD
+(export 'arc-chord)
+(defparameter arc-pie #xF102 );; VGU_ARC_PIE
+(export 'arc-pie)
 ;; (defparameter vgu-arc-type-force-size #x7FFFFFFF );; VGU_ARC_TYPE_FORCE_SIZE
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/vgu.h:99:41)

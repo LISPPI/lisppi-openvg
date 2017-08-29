@@ -6,7 +6,8 @@
   (defparameter *opt-speed* 3)
   (defparameter *opt-safety* 0)
   (defparameter *opt-debug* 0))
-
+(deftype handle ()
+    `(integer 0 #xFFFFFFFF))
 ;;-----------------------------------------------------------------------------
 (defun get-string ( name) 
   (declare (type fixnum name))
@@ -642,7 +643,8 @@
 (defun rotate ( angle) 
   (declare (type float angle))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&rotate angle))
+  (&rotate angle)
+  nil)
 (export 'rotate)
 
 
@@ -651,7 +653,8 @@
   (declare (type float shx))
   (declare (type float shy))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&shear shx shy))
+  (&shear shx shy)
+  nil)
 (export 'shear)
 
 
@@ -660,7 +663,8 @@
   (declare (type float sx))
   (declare (type float sy))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&scale sx sy))
+  (&scale sx sy)
+  nil)
 (export 'scale)
 
 
@@ -669,7 +673,8 @@
   (declare (type float tx))
   (declare (type float ty))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&translate tx ty))
+  (&translate tx ty)
+  nil)
 (export 'translate)
 
 
@@ -899,3 +904,20 @@
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
   (&get-error))
 (export 'get-error)
+
+
+
+
+(defmacro with-paint ((var) &body body)
+  `(let ((,var (vg:create-paint)))
+     (declare (type handle ,var))
+     ,@body
+     (vg:destroy-paint ,var)))
+(export 'with-paint)
+
+(defmacro with-path ((var path) &body body)
+  `(let ((,var ,path))
+     (declare (type handle ,var))
+     ,@body
+     (vg:destroy-path ,var)))
+(export 'with-path)

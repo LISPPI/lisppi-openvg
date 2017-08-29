@@ -1,7 +1,7 @@
 (in-package #:vgu)
-(deftype handle ()
-    `handle)
 
+(deftype handle ()
+    `(integer 0 #xFFFFFFFF))
 (eval-when (:execute :load-toplevel :compile-toplevel)
   (defparameter *opt-speed* 3)
   (defparameter *opt-safety* 0)
@@ -67,7 +67,7 @@
 
 ;;-----------------------------------------------------------------------------
 (defun arc ( path x y width height start-angle angle-extent arc-type) 
-  (declare (type integer path))
+  (declare (type handle  path))
   (declare (type float x))
   (declare (type float y))
   (declare (type float width))
@@ -80,23 +80,29 @@
   (&arc path x y width height start-angle angle-extent arc-type))
 (export 'arc)
 
-
-;;-----------------------------------------------------------------------------
-(defun ellipse ( path cx cy width height) 
-  (declare (type integer path))
-  (declare (type float cx))
-  (declare (type float cy))
-  (declare (type float width))
-  (declare (type float height))
-  (declare (optimize (speed #.*opt-speed*) 
+(defun error-check (fun &rest params)
+  (declare (type function fun))
+   (declare (optimize (speed #.*opt-speed*) 
     (safety #.*opt-safety*) (debug #.*opt-debug*)))
+   (let ((result (funcall fun params)))
+     (declare (type fixnum result))
+     (unless (zerop result)
+      (error "vgu error ~X in ~A ~A " result fun params ))))
+;;-----------------------------------------------------------------------------
+(defun ellipse (path cx cy width &optional (height width)) 
+  (declare (type handle path))
+  (declare (type float cx cy width height))
+  (declare (optimize (speed #.*opt-speed*) 
+		     (safety #.*opt-safety*) (debug #.*opt-debug*)))
   (&ellipse path cx cy width height))
+;;  (error-check #'&ellipse path cx cy width height)
+  
 (export 'ellipse)
 
 
 ;;-----------------------------------------------------------------------------
 (defun round-rect ( path x y width height arc-width arc-height) 
-  (declare (type integer path))
+  (declare (type handle path))
   (declare (type float x))
   (declare (type float y))
   (declare (type float width))
@@ -111,7 +117,7 @@
 
 ;;-----------------------------------------------------------------------------
 (defun rect ( path x y width height) 
-  (declare (type integer path))
+  (declare (type handle path))
   (declare (type float x))
   (declare (type float y))
   (declare (type float width))
@@ -124,7 +130,7 @@
 
 ;;-----------------------------------------------------------------------------
 (defun polygon ( path points count closed) 
-  (declare (type integer path))
+  (declare (type handle path))
   (declare (type cffi-sys:foreign-pointer points))
   (declare (type integer count))
   (declare (type integer closed))
@@ -136,7 +142,7 @@
 
 ;;-----------------------------------------------------------------------------
 (defun line ( path x0 y0 x1 y1) 
-  (declare (type integer path))
+  (declare (type handle path))
   (declare (type float x0))
   (declare (type float y0))
   (declare (type float x1))
