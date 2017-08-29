@@ -1,20 +1,25 @@
 (in-package #:vgu)
 
+
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/vgu.h:59:9)
 ;;
-(defcenum error-code ;; _VGUErrorCode
-  (:vgu-no-error #x0) ;;VGU_NO_ERROR
-  (:vgu-bad-handle-error #xF000) ;;VGU_BAD_HANDLE_ERROR
-  (:vgu-illegal-argument-error #xF001) ;;VGU_ILLEGAL_ARGUMENT_ERROR
-  (:vgu-out-of-memory-error #xF002) ;;VGU_OUT_OF_MEMORY_ERROR
-  (:vgu-path-capability-error #xF003) ;;VGU_PATH_CAPABILITY_ERROR
-  (:vgu-bad-warp-error #xF004) ;;VGU_BAD_WARP_ERROR
-  (:vgu-error-code-force-size #x7FFFFFFF) ;;VGU_ERROR_CODE_FORCE_SIZE
-)
+(defctype xfixnum :uint)
+(defctype error-code xfixnum);; was _VGUErrorCode
 (export 'error-code)
-
-
+(defparameter vgu-no-error #x0 );; VGU_NO_ERROR
+(export 'vgu-no-error)
+(defparameter vgu-bad-handle-error #xF000 );; VGU_BAD_HANDLE_ERROR
+(export 'vgu-bad-handle-error)
+(defparameter vgu-illegal-argument-error #xF001 );; VGU_ILLEGAL_ARGUMENT_ERROR
+(export 'vgu-illegal-argument-error)
+(defparameter vgu-out-of-memory-error #xF002 );; VGU_OUT_OF_MEMORY_ERROR
+(export 'vgu-out-of-memory-error)
+(defparameter vgu-path-capability-error #xF003 );; VGU_PATH_CAPABILITY_ERROR
+(export 'vgu-path-capability-error)
+(defparameter vgu-bad-warp-error #xF004 );; VGU_BAD_WARP_ERROR
+(export 'vgu-bad-warp-error)
+;; (defparameter vgu-error-code-force-size #x7FFFFFFF );; VGU_ERROR_CODE_FORCE_SIZE
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/vgu.h:117:41)
 ;;
@@ -83,15 +88,15 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/vgu.h:70:9)
 ;;
-(defcenum arc-type ;; _VGUArcType
-  (:vgu-arc-open #xF100) ;;VGU_ARC_OPEN
-  (:vgu-arc-chord #xF101) ;;VGU_ARC_CHORD
-  (:vgu-arc-pie #xF102) ;;VGU_ARC_PIE
-  (:vgu-arc-type-force-size #x7FFFFFFF) ;;VGU_ARC_TYPE_FORCE_SIZE
-)
+(defctype arc-type xfixnum);; was _VGUArcType
 (export 'arc-type)
-
-
+(defparameter vgu-arc-open #xF100 );; VGU_ARC_OPEN
+(export 'vgu-arc-open)
+(defparameter vgu-arc-chord #xF101 );; VGU_ARC_CHORD
+(export 'vgu-arc-chord)
+(defparameter vgu-arc-pie #xF102 );; VGU_ARC_PIE
+(export 'vgu-arc-pie)
+;; (defparameter vgu-arc-type-force-size #x7FFFFFFF );; VGU_ARC_TYPE_FORCE_SIZE
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/vgu.h:99:41)
 ;;
@@ -184,3 +189,4 @@
   (y1  :FLOAT) ;; y1 #<typedef VGfloat>
 )
 (export '&line)
+ 
