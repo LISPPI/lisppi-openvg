@@ -3,6 +3,70 @@
 (declaim (optimize (speed 3) (safety 0) (debug 0)))
 (defctype xfixnum :int)
 (export 'xfixnum)
+
+;;------------------------------------------------------------------------------
+;; (/opt/vc/include/VG/openvg.h:276:9)
+;;
+(defctype path-param-type xfixnum);; was _VGPathParamType
+(export 'path-param-type)
+(defparameter path-format #x1600 );; VG_PATH_FORMAT
+(export 'path-format)
+(defparameter path-datatype #x1601 );; VG_PATH_DATATYPE
+(export 'path-datatype)
+(defparameter path-scale #x1602 );; VG_PATH_SCALE
+(export 'path-scale)
+(defparameter path-bias #x1603 );; VG_PATH_BIAS
+(export 'path-bias)
+(defparameter path-num-segments #x1604 );; VG_PATH_NUM_SEGMENTS
+(export 'path-num-segments)
+(defparameter path-num-coords #x1605 );; VG_PATH_NUM_COORDS
+(export 'path-num-coords)
+;; (defparameter path-param-type-force-size #x7FFFFFFF );; VG_PATH_PARAM_TYPE_FORCE_SIZE
+;;------------------------------------------------------------------------------
+;; (/opt/vc/include/VG/openvg.h:170:9)
+;;
+(defctype matrix-mode xfixnum);; was _VGMatrixMode
+(export 'matrix-mode)
+(defparameter matrix-path-user-to-surface #x1400 );; VG_MATRIX_PATH_USER_TO_SURFACE
+(export 'matrix-path-user-to-surface)
+(defparameter matrix-image-user-to-surface #x1401 );; VG_MATRIX_IMAGE_USER_TO_SURFACE
+(export 'matrix-image-user-to-surface)
+(defparameter matrix-fill-paint-to-user #x1402 );; VG_MATRIX_FILL_PAINT_TO_USER
+(export 'matrix-fill-paint-to-user)
+(defparameter matrix-stroke-paint-to-user #x1403 );; VG_MATRIX_STROKE_PAINT_TO_USER
+(export 'matrix-stroke-paint-to-user)
+(defparameter matrix-glyph-user-to-surface #x1404 );; VG_MATRIX_GLYPH_USER_TO_SURFACE
+(export 'matrix-glyph-user-to-surface)
+;; (defparameter matrix-mode-force-size #x7FFFFFFF );; VG_MATRIX_MODE_FORCE_SIZE
+;;------------------------------------------------------------------------------
+;; (/opt/vc/include/VG/openvg.h:160:9)
+;;
+(defctype pixel-layout xfixnum);; was _VGPixelLayout
+(export 'pixel-layout)
+(defparameter pixel-layout-unknown #x1300 );; VG_PIXEL_LAYOUT_UNKNOWN
+(export 'pixel-layout-unknown)
+(defparameter pixel-layout-rgb-vertical #x1301 );; VG_PIXEL_LAYOUT_RGB_VERTICAL
+(export 'pixel-layout-rgb-vertical)
+(defparameter pixel-layout-bgr-vertical #x1302 );; VG_PIXEL_LAYOUT_BGR_VERTICAL
+(export 'pixel-layout-bgr-vertical)
+(defparameter pixel-layout-rgb-horizontal #x1303 );; VG_PIXEL_LAYOUT_RGB_HORIZONTAL
+(export 'pixel-layout-rgb-horizontal)
+(defparameter pixel-layout-bgr-horizontal #x1304 );; VG_PIXEL_LAYOUT_BGR_HORIZONTAL
+(export 'pixel-layout-bgr-horizontal)
+;; (defparameter pixel-layout-force-size #x7FFFFFFF );; VG_PIXEL_LAYOUT_FORCE_SIZE
+;;------------------------------------------------------------------------------
+;; (/opt/vc/include/VG/openvg.h:152:9)
+;;
+(defctype rendering-quality xfixnum);; was _VGRenderingQuality
+(export 'rendering-quality)
+(defparameter quality-nonantialiased #x1200 );; VG_RENDERING_QUALITY_NONANTIALIASED
+(export 'quality-nonantialiased)
+(defparameter quality-faster #x1201 );; VG_RENDERING_QUALITY_FASTER
+(export 'quality-faster)
+(defparameter quality-better #x1202 );; VG_RENDERING_QUALITY_BETTER
+(export 'quality-better)
+;; (defparameter quality-force-size #x7FFFFFFF );; VG_RENDERING_QUALITY_FORCE_SIZE
+
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:448:9)
 ;;

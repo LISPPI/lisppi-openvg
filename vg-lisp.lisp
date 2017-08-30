@@ -909,15 +909,15 @@
 
 
 (defmacro with-paint ((var) &body body)
-  `(let ((,var (vg:create-paint)))
+  `(let ((,var (vg::create-paint)))
      (declare (type handle ,var))
      ,@body
-     (vg:destroy-paint ,var)))
+     (vg::destroy-paint ,var)))
 (export 'with-paint)
 
 (defmacro with-path ((var path) &body body)
   `(let ((,var ,path))
      (declare (type handle ,var))
      ,@body
-     (vg:destroy-path ,var)))
+     (vg::destroy-path ,var)))
 (export 'with-path)
