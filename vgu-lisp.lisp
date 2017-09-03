@@ -3,9 +3,9 @@
 (deftype handle ()
     `(integer 0 #xFFFFFFFF))
 (eval-when (:execute :load-toplevel :compile-toplevel)
-  (defparameter *opt-speed* 3)
-  (defparameter *opt-safety* 0)
-  (defparameter *opt-debug* 0))
+  (defparameter *opt-speed* 0)
+  (defparameter *opt-safety* 3)
+  (defparameter *opt-debug* 3))
 ;;-----------------------------------------------------------------------------
 (defun compute-warp-quad-to-quad ( dx0 dy0 dx1 dy1 dx2 dy2 dx3 dy3 sx0 sy0 sx1 sy1 sx2 sy2 sx3 sy3 matrix) 
   (declare (type float dx0))
@@ -92,10 +92,9 @@
 (defun ellipse (path cx cy width &optional (height width)) 
   (declare (type handle path))
   (declare (type float cx cy width height))
-  (declare (optimize (speed #.*opt-speed*) 
-		     (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&ellipse path cx cy width height))
-;;  (error-check #'&ellipse path cx cy width height)
+  (declare (optimize (speed 0) (safety 3) (debug 3)))
+  (&ellipse path cx cy width height )
+  nil)
   
 (export 'ellipse)
 

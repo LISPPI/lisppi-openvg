@@ -3,9 +3,9 @@
 (defparameter path-format-standard 0)
 (export 'path-format-standard)
 (eval-when (:execute :load-toplevel :compile-toplevel)
-  (defparameter *opt-speed* 3)
-  (defparameter *opt-safety* 0)
-  (defparameter *opt-debug* 0))
+  (defparameter *opt-speed* 0)
+  (defparameter *opt-safety* 3)
+  (defparameter *opt-debug* 3)) 
 (deftype handle ()
     `(integer 0 #xFFFFFFFF))
 ;;-----------------------------------------------------------------------------
@@ -238,7 +238,7 @@
 (defun set-pixels ( dx dy src sx sy width height) 
   (declare (type fixnum dx))
   (declare (type fixnum dy))
-  (declare (type fixnum src))
+  (declare (type handle src))
   (declare (type fixnum sx))
   (declare (type fixnum sy))
   (declare (type fixnum width))
@@ -303,7 +303,8 @@
   (declare (type fixnum width))
   (declare (type fixnum height))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&get-image-sub-data image data data-stride data-format x y width height))
+  (&get-image-sub-data image data data-stride data-format x y width height)
+  nil)
 (export 'get-image-sub-data)
 
 
@@ -318,7 +319,9 @@
   (declare (type fixnum width))
   (declare (type fixnum height))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&image-sub-data image data data-stride data-format x y width height))
+  (&image-sub-data image data data-stride data-format x y width height)
+  nil)
+
 (export 'image-sub-data)
 
 
@@ -921,3 +924,10 @@
      ,@body
      (vg::destroy-path ,var)))
 (export 'with-path)
+
+(defmacro with-image ((var image-format width height allowed-quality) &body body)
+  `(let ((,var (create-image ,image-format ,width ,height ,allowed-quality)))
+     (declare (type handle ,var))
+     ,@body
+     (vg::destroy-image ,var)))
+(export 'with-image)
