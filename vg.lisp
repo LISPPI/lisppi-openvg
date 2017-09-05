@@ -144,9 +144,10 @@
 ;;------------------------------------------------------------------------------
 ;; (/opt/vc/include/VG/openvg.h:317:9)
 ;;
+;; parameter name, lhs!, selector...
 (defctype paint-param-type xfixnum);; was _VGPaintParamType
 (export 'paint-param-type)
-(defparameter paint-type #x1A00 );; VG_PAINT_TYPE
+(defparameter paint-type #x1A00 );; Parameter - VG_PAINT_TYPE
 (export 'paint-type)
 (defparameter paint-color #x1A01 );; VG_PAINT_COLOR
 (export 'paint-color)

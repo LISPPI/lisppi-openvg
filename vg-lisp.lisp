@@ -931,3 +931,16 @@
      ,@body
      (vg::destroy-image ,var)))
 (export 'with-image)
+
+
+(defparameter *error-array*
+  (make-array 8 :initial-contents '("Bad Handle" "Illegal Argument" "Out of Memory" "Path Capability" "Unsupporter Image Format" "Unsupported Path Format" "Image in Use" "No Context")))
+
+(defun error-msg (error-code)
+  (if (zerop error-code )
+      "Success"
+      (if (and (>= error-code #x1000)
+	       (<= error-code #x1007))
+	  (aref *error-array* (- error-code #x1000))
+	  (format nil "Unknown error code ~x" error-code))))
+(export 'error-msg)
