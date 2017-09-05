@@ -8,10 +8,16 @@
 ;; mallocs are kept there, and at any convenient point, we can clean
 ;; up using a saved index.
 ;;
-(defparameter *mallocs* (make-array 0 :element-type 'cffi-sys:foreign-pointer
+
+(eval-when (:execute :load-toplevel :compile-toplevel)
+  (defun make-mm ()
+    (make-array 0 :element-type 'cffi-sys:foreign-pointer
 					 :adjustable t
 					 :fill-pointer t))
-(export '*mallocs*)
+  (export 'make-mm)
+    (defparameter *mallocs* (make-mm))
+  (export '*mallocs*))
+
 (defun mallocs-free (&optional (limit 0) (arr *mallocs*))
   "free all foreign objects allocated on *malloc-stack* down to the
 one at limit."
@@ -26,11 +32,11 @@ one at limit."
 
 (defmacro with-mallocs (&body body)
   (let ((malloc-index (gensym))
-	(stack *mallocs*))
+	(stack vg:*mallocs*))
     `(let ((,malloc-index (fill-pointer ,stack)))
        ,@body
        (mallocs-free ,malloc-index ,stack))))
-
+(export 'with-mallocs)
 (defun malloc (type init)
   (let ((ptr (foreign-alloc type :initial-contents init)))
     (vector-push-extend ptr *mallocs*)
@@ -38,6 +44,10 @@ one at limit."
 (export 'malloc)
 
 
+(defmacro with-mm (mm &body body)
+  `(let ((vg:*mallocs* ,mm))
+     ,@body))
+(export 'with-mm)
 ;; Reader macros to read foreign vectors using #{...} format.
 ;;
 ;; #{ } creates a form that will compile to foreign-alloc an array and
@@ -115,4 +125,5 @@ one at limit."
 
 (set-macro-character #\} (get-macro-character #\) ))
 
-
+;; Since mallocs are in a single array, mm is just another array
+;; for keeping mallocs.

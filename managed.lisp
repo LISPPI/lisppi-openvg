@@ -14,11 +14,12 @@
     (make-array 0 :element-type 'integer
 		:adjustable t
 		:fill-pointer t))
-
+  (export '*handles*)
   (defparameter *handle-types* 
     (make-array 0 :element-type '(integer 0 5)
 		:adjustable t
 		:fill-pointer t))
+  (export '*handle-types*)
 
   (defun handles-currently ()
     (fill-pointer *handles*))
@@ -52,3 +53,22 @@
       (handles-free limit handles types))
     nil )
   (export 'handles-free))
+
+;; The global management of foreign buffers may not be always desirable.
+;; You may wish to persist an object, and its foreign state, and yet
+;; be able to trash it easily.
+;;
+;; That is where hanman (handle manager) comes in.  It creates a separately
+;; managed group of handles that can be swapped in for a duration.
+(defstruct hanman
+  (handles (make-array 0 :element-type 'integer
+		:adjustable t
+		:fill-pointer t))
+  (types (make-array 0 :element-type '(integer 0 6)
+			     :adjustable t
+			     :fill-pointer t)))
+
+(defmacro with-hanman (hanman &body body)
+  `(let ((vg:*handles* (vg::hanman-handles ,hanman))
+	 (vg:*handle-types* (vg::hanman-types ,hanman)))
+     ,@body))
