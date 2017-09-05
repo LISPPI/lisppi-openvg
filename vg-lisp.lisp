@@ -6,8 +6,9 @@
   (defparameter *opt-speed* 0)
   (defparameter *opt-safety* 3)
   (defparameter *opt-debug* 3)) 
+
 (deftype handle ()
-    `(integer 0 #xFFFFFFFF))
+  `(integer 0 #xFFFFFFFF))
 ;;-----------------------------------------------------------------------------
 (defun get-string ( name) 
   (declare (type fixnum name))
@@ -175,7 +176,10 @@
 (defun create-font ( glyph-capacity-hint) 
   (declare (type fixnum glyph-capacity-hint))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&create-font glyph-capacity-hint))
+  (let ((handle (&create-font glyph-capacity-hint)))
+    (vector-push-extend handle *handles*)
+    (vector-push-extend handle-font *handle-types*)
+    handle))
 (export 'create-font)
 
 
@@ -352,7 +356,11 @@
   (declare (type fixnum height))
   (declare (type fixnum allowed-quality))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&create-image format width height allowed-quality))
+  (let ((handle (&create-image format width height allowed-quality)))
+    (vector-push-extend handle *handles*)
+    (vector-push-extend handle-image *handle-types*)
+    handle))
+
 (export 'create-image)
 
 
@@ -410,7 +418,10 @@
 (defun create-paint () 
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
 ;;  
-  (&create-paint))
+  (let ((handle (&create-paint)))
+    (vector-push-extend handle *handles*)
+    (vector-push-extend handle-paint *handle-types*)
+    handle))
 (export 'create-paint)
 
 
@@ -561,7 +572,11 @@
   (declare (type fixnum coord-capacity-hint))
   (declare (type fixnum capabilities))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&create-path path-format datatype scale bias segment-capacity-hint coord-capacity-hint capabilities))
+  (let ((handle (&create-path path-format datatype scale bias segment-capacity-hint coord-capacity-hint capabilities)))
+    (vector-push-extend handle *handles*)
+    (vector-push-extend handle-path *handle-types*)
+    handle)
+  )
 (export 'create-path)
 
 
@@ -615,7 +630,11 @@
   (declare (type fixnum width))
   (declare (type fixnum height))
   (declare (optimize (speed #.*opt-speed*) (safety #.*opt-safety*) (debug #.*opt-debug*)))
-  (&create-mask-layer width height))
+  (let ((handle (&create-mask-layer width height)))
+    (vector-push-extend handle *handles*)
+    (vector-push-extend handle-mask-layer *handle-types*)
+    handle)
+  )
 (export 'create-mask-layer)
 
 
@@ -914,6 +933,7 @@
 (defmacro with-paint ((var) &body body)
   `(let ((,var (vg::create-paint)))
      (declare (type handle ,var))
+     (format t "HANDLE: ~A& " handle)
      ,@body
      (vg::destroy-paint ,var)))
 (export 'with-paint)

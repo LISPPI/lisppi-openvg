@@ -10,8 +10,12 @@
 	       (:file "library")
 	       (:file "vg")
 	       (:file "vg-lisp")
+
+	       (:file "managed")
 	       (:file "vgu")
 	       (:file "vgu-lisp")
 
-	       (:file "proof")))
+	       (:file "malloc")
+;;	       (:file "proof")
+	       ))
 

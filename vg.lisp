@@ -611,7 +611,7 @@
 (declaim (inline &create-font))
 (defcfun ("vgCreateFont" &create-font) :UINT
   "see: (/opt/vc/include/VG/openvg.h:672:33)"
-  (glyph-capacity-hint  :INT) ;; glyphCapacityHint #<typedef VGint>
+   (glyph-capacity-hint  :INT) ;; glyphCapacityHint #<typedef VGint>
 )
 (export '&create-font)
 
