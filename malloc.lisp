@@ -53,7 +53,7 @@ one at limit."
 
 (export 'malloc)
 
-
+;; This is crucial!  It's the only way to keep persistent data.
 (defmacro with-mm (mm &body body)
   `(let ((vg:*mallocs* ,mm))
      ,@body))
@@ -176,3 +176,10 @@ one at limit."
 ;;(set-dispatch-macro-character #\# #\{ #'foreign-vec-reader)
 (set-macro-character #\{ #'foreign-vec-reader)
 (set-macro-character #\} (get-macro-character #\) ))
+
+
+;;==============================================================================
+;; A slightly sideways tech: grouped allocations.
+;;
+;; (mallet ((a {:int 1 2 3})...
+;;

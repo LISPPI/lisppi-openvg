@@ -38,7 +38,7 @@
                (loop :for i :below (max 0 (floor (/ (- 16 (length batch)) 2)))
                   :collect "     ")
                chars))))
-;;=================================================================
+#||;;=================================================================
 (defclass vec ()
   ((pointer :accessor pointer :initarg :pointer :type cffi-sys:foreign-pointer)
    (size    :accessor size    :initarg :size    :type fixnum)))
@@ -123,3 +123,4 @@
        (format stream "~A " (mem-ref (pointer object) :int
 				     (* 4 i))))
   (format stream ")>"))
+||#

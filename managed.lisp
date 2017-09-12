@@ -42,7 +42,7 @@
 		  #'destroy-path)))
 
   (defun handles-free (&optional (limit 0) (handles *handles*)
-			       (types *handle-types*))
+			 (types *handle-types*))
     "free all handles down to the one at limit."
     (declare (optimize (speed 3) (safety 0) (debug 0)))
     (declare (type fixnum limit))
@@ -52,7 +52,14 @@
 	       (vector-pop handles))
       (handles-free limit handles types))
     nil )
-  (export 'handles-free))
+  (export 'handles-free)
+
+  (defmacro with-handles (&body body)
+    `(let ((handles-currently (vg:handles-currently)))
+       ,@body
+       (vg:handles-free handles-currently) ))
+  (export 'with-handles))
+
 
 ;; The global management of foreign buffers may not be always desirable.
 ;; You may wish to persist an object, and its foreign state, and yet
