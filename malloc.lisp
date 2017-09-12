@@ -164,10 +164,15 @@ one at limit."
 ;; The latter form decides the type based on the first element's type.
 ;;
 
-(defun foreign-vec-reader(stream sub-char infix)
-  (let ((data (read-delimited-list #\} stream t)))
-    `(%v ,@data)))
+
 
 ;;==============================================================================
-(set-dispatch-macro-character #\# #\{ #'foreign-vec-reader)
+;;(eval-when (:execute :load-toplevel :compile-toplevel))
+(defun foreign-vec-reader(stream sub-char ;;infix
+			  )
+  (let ((data (read-delimited-list #\} stream t)))
+    `(%v ,@data)))
+  
+;;(set-dispatch-macro-character #\# #\{ #'foreign-vec-reader)
+(set-macro-character #\{ #'foreign-vec-reader)
 (set-macro-character #\} (get-macro-character #\) ))
