@@ -23,6 +23,7 @@
 
   (defun handles-currently ()
     (fill-pointer *handles*))
+  
   (export 'handles-currently)
   
   (defparameter handle-font 0)
@@ -57,7 +58,8 @@
   (defmacro with-handles (&body body)
     `(let ((handles-currently (vg:handles-currently)))
        ,@body
-       (vg:handles-free handles-currently) ))
+       (vg:handles-free handles-currently)
+       ))
   (export 'with-handles))
 
 
