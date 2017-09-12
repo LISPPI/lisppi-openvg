@@ -1,5 +1,6 @@
 *~
 *.fasl
+*.lafsl
 *.FASL
 *.~lock*
 \#*\#

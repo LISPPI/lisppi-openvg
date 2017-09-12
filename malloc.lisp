@@ -10,12 +10,16 @@
 ;;
 
 (eval-when (:execute :load-toplevel :compile-toplevel)
+  ;; an mm is a kind of memory manager.  It allows multiple allocs
+  ;; followed by a bulk dealloc.
   (defun make-mm ()
     (make-array 0 :element-type 'cffi-sys:foreign-pointer
-					 :adjustable t
-					 :fill-pointer t))
+		:adjustable t
+		:fill-pointer t))
   (export 'make-mm)
-    (defparameter *mallocs* (make-mm))
+
+  ;; main mm is:
+  (defparameter *mallocs* (make-mm))
   (export '*mallocs*))
 
 (defun mallocs-free (&optional (limit 0) (arr *mallocs*))
@@ -30,17 +34,23 @@ one at limit."
   nil)
 (export 'mallocs-free)
 
+;; do we need a fancier one? with custom mm?
 (defmacro with-mallocs (&body body)
-  (let ((malloc-index (gensym))
-	(stack vg:*mallocs*))
-    `(let ((,malloc-index (fill-pointer ,stack)))
+  (let ((malloc-index (gensym)))
+    `(let ((,malloc-index (fill-pointer *mallocs*)))
        ,@body
-       (mallocs-free ,malloc-index ,stack))))
+       (mallocs-free ,malloc-index *mallocs*))))
+
 (export 'with-mallocs)
-(defun malloc (type init)
+
+
+(defun malloc (type init )
+  ;;(declare (optimize (speed 3) (safety 0) (debug 0)))
   (let ((ptr (foreign-alloc type :initial-contents init)))
+  ;;  (declare (type cffi-sys:foreign-pointer ptr))
     (vector-push-extend ptr *mallocs*)
     ptr))
+
 (export 'malloc)
 
 
@@ -64,10 +74,10 @@ one at limit."
 ;; - floats can convert to integer types if the matissa is 0
 ;; - integers can always convert to floats
 ;; - integers can convert to pointers
-;; 
-;; For now, no optimizations take place if the elements are calculated...
+;; - non-literal values are passed on without a check
 ;;
 
+;; 
 (defun foreign-element-coerce (foreign-type value)
   "attempt to convert a value to the canonicalized foreign-type"
   (format t "CONVERTING ~A to ~A~&" value foreign-type)
@@ -78,8 +88,7 @@ one at limit."
 		 v
 		 (error "value ~A cannot be stored as foreign type ~A"
 			value foreign-type )))))
-    (if (consp value)
-	`(foreign-element-coerce ,foreign-type ,value)
+    (if (numberp value);literal value?
 	(case foreign-type
 	  (:unsigned-char (integer-helper '(integer 0 #xFF)))
 	  (:unsigned-short (integer-helper '(integer 0 #xFFFF)))
@@ -101,29 +110,64 @@ one at limit."
 			(4 (cffi-sys:make-pointer 
 			    (integer-helper '(integer 0 #xFFFFFFFF))))
 			(8 (cffi-sys:make-pointer 
-			    (integer-helper '(integer 0 #xFFFFFFFFFFFFFFFF))))))))))))
+			    (integer-helper '(integer 0 #xFFFFFFFFFFFFFFFF)))))))))
+	value)))
+;; Process a list of values sent to initialize a foreign vector.
+;; literal values are compiled; any functions must be executed at runtime;
+;; so we shall build a let statement.
 
-(defun foreign-vec-reader(stream sub-char infix)
-  (format t "sub-char: ~A infix ~A" sub-char infix)
-  (multiple-value-bind ;;
-	(foreign-type initial-contents)
-      (let* ((data (read-delimited-list #\} stream t))
-	     (first (first data)))   
+;;==============================================================================
+;;
+;; 
+;; Invfer vector type, try to normalize initializaiton list.
+;; any non-literal initializers are passed on not checked.
+(defun %vec-type-infer (data)
+  "given %vec initializer, return type and normalized list"
+  (multiple-value-bind (foreign-type initlist)
+      (let ((first (first data)))   
 	(typecase first
-	  (symbol (values (cffi::canonicalize-foreign-type first) (cdr data)))
+	  (symbol (values (cffi::canonicalize-foreign-type first)
+			  (cdr data)))
 	  (integer (values :int data))
 	  (double-float :double-float data)
 	  (float (values :float data))
 	  (t (error "Unsupported foreign vector element ~A type ~A"
 		    first (type-of first)))))
-    `(malloc ,foreign-type
-	     (list ,@(mapcar (lambda (element)
-			       (foreign-element-coerce foreign-type element))
-				  initial-contents)))))
+    (values foreign-type
+	    (mapcar (lambda (item)
+		      (foreign-element-coerce foreign-type item))
+		    initlist))))
 
+(defmacro %v (&rest data)
+  (multiple-value-bind (foreign-type initial-contents)
+      (%vec-type-infer data)
+    ;; assuming the worst, create runtime-processing initializer
+    `(malloc
+      ,foreign-type (list ,@initial-contents))))
+
+;; for the case of all literals
+(define-compiler-macro %v (&whole form &rest data)
+  (if (every #'numberp data)
+      (multiple-value-bind (foreign-type initial-contents)
+	  (%vec-type-infer data)
+	;; since we only have literals, just compile
+	`(malloc ,foreign-type ',initial-contents))
+     form))
+
+(export '%v)
+
+;;==============================================================================
+;; A reader macro to allow easy syntax of:
+;;
+;; #{:int 1 2 3 } or just #{ 1 2 3}
+;;
+;; The latter form decides the type based on the first element's type.
+;;
+
+(defun foreign-vec-reader(stream sub-char infix)
+  (let ((data (read-delimited-list #\} stream t)))
+    `(%v ,@data)))
+
+;;==============================================================================
 (set-dispatch-macro-character #\# #\{ #'foreign-vec-reader)
-
 (set-macro-character #\} (get-macro-character #\) ))
-
-;; Since mallocs are in a single array, mm is just another array
-;; for keeping mallocs.
