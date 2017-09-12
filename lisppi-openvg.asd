@@ -16,6 +16,7 @@
 	       (:file "vgu-lisp")
 
 	       (:file "malloc")
+	       (:file "rgba")
 ;;	       (:file "proof")
 	       ))
 
