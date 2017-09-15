@@ -55,10 +55,10 @@
     nil )
   (export 'handles-free)
 
-  (defmacro with-handles (&body body)
-    `(let ((handles-currently (vg:handles-currently)))
+  (defmacro awith-handles (&body body)
+    `(let ((handles-currently (vg::handles-currently)))
        ,@body
-       (vg:handles-free handles-currently)
+       (vg::ahandles-free handles-currently)
        ))
   (export 'with-handles))
 
